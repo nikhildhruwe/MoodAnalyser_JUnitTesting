@@ -12,9 +12,9 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenMood_WhenHappy_ShouldReturnHappy() {
+    public void givenMood_WhenAnyMood_ShouldReturnHappy() {
         MoodAnalyser moodAnalyser = new MoodAnalyser();
-        String mood = moodAnalyser.analyseMood("I am in happy mood.");
+        String mood = moodAnalyser.analyseMood("I am in any mood.");
         Assert.assertEquals("HAPPY",mood);
     }
 }
