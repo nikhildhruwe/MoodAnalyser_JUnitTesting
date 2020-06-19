@@ -26,7 +26,17 @@ public class MoodAnalyserTest {
         try {
             moodAnalyser.analyseMood();
         } catch (MoodAnalyserException e) {
-            Assert.assertEquals("Entered NULL, Enter proper message",e.getMessage());
+            Assert.assertEquals("Entered NULL message",e.getMessage());
+        }
+    }
+
+    @Test
+    public void givenMood_WhenEmpty_ShouldThrowException() throws MoodAnalyserException {
+        MoodAnalyser moodAnalyser = new MoodAnalyser("");
+        try {
+            moodAnalyser.analyseMood();
+        } catch (MoodAnalyserException e){
+            Assert.assertEquals("Entered Empty message",e.getMessage());
         }
     }
 }
