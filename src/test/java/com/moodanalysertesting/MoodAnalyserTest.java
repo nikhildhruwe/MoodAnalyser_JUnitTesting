@@ -30,7 +30,6 @@ public class MoodAnalyserTest {
             moodAnalyser.analyseMood();
         } catch (MoodAnalyserException e) {
             Assert.assertEquals("Entered NULL, Enter proper message",e.getMessage());
-
         }
     }
 }
