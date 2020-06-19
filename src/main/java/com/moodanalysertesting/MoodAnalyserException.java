@@ -5,6 +5,6 @@ public class MoodAnalyserException extends Exception{
         super(message);
     }
 
-    public enum moodExceptionType{EMPTY,NULL}
+   enum moodExceptionType{ENTERED_EMPTY,ENTERED_NULL}
 
 }
