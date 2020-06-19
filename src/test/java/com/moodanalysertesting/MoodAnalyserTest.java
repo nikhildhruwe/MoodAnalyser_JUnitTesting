@@ -23,14 +23,14 @@ public class MoodAnalyserTest {
     @Test
     public void givenMood_WhenNull_ShouldReturnHappy() {
         MoodAnalyser moodAnalyser = new MoodAnalyser(null);
-        String mood = null;
+        String mood=null;
         try {
             ExpectedException expectionRule = ExpectedException.none();
             expectionRule.expect(MoodAnalyserException.class);
-            mood = moodAnalyser.analyseMood();
-            Assert.assertEquals("HAPPY",mood);
+            moodAnalyser.analyseMood();
         } catch (MoodAnalyserException e) {
-            e.printStackTrace();
+            Assert.assertEquals("Entered NULL, Enter proper message",e.getMessage());
+
         }
     }
 }
