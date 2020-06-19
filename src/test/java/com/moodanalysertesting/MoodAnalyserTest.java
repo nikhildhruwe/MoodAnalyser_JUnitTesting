@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MoodAnalyserTest {
-
     @Test
     public void givenMood_WhenSad_ShouldReturnSad() {
         MoodAnalyser moodAnalyser = new MoodAnalyser();
