@@ -6,6 +6,7 @@ import org.junit.internal.runners.statements.ExpectException;
 import org.junit.rules.ExpectedException;
 
 public class MoodAnalyserTest {
+    //Test Case for sad message
     @Test
     public void givenMood_WhenSad_ShouldReturnSad() throws MoodAnalyserException {
         MoodAnalyser moodAnalyser = new MoodAnalyser("I am in sad mood.");
@@ -13,6 +14,7 @@ public class MoodAnalyserTest {
         Assert.assertEquals("SAD",mood);
     }
 
+    //Test Case for any mood
     @Test
     public void givenMood_WhenAnyMood_ShouldReturnHappy() throws MoodAnalyserException {
         MoodAnalyser moodAnalyser = new MoodAnalyser("I am in any mood.");
@@ -20,6 +22,7 @@ public class MoodAnalyserTest {
         Assert.assertEquals("HAPPY",mood);
     }
 
+    //Test Case for null message
     @Test
     public void givenMood_WhenNull_ShouldThrowException() {
         MoodAnalyser moodAnalyser = new MoodAnalyser(null);
@@ -30,6 +33,7 @@ public class MoodAnalyserTest {
         }
     }
 
+    //Test Case for empty message
     @Test
     public void givenMood_WhenEmpty_ShouldThrowException() throws MoodAnalyserException {
         MoodAnalyser moodAnalyser = new MoodAnalyser("");
