@@ -9,9 +9,15 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserTest {
+  /*  @Test
+    public void givenMoodAnalyserClass_UsedDefaultConstructor_WhenProper_ShouldReturnObject() {
+
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
+                "ppy mood","com.moodanalysertesting.MoodAnalyser");
+    }*/
 
     @Test
-    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObject() {
+    public void givenMoodAnalyserClass_UsedParameterisedConstructor_WhenProper_ShouldReturnObject() {
         MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
                 "ppy mood","com.moodanalysertesting.MoodAnalyser");
         Assert.assertEquals(new MoodAnalyser("I am in a Happy mood"),moodAnalyser );
@@ -19,12 +25,15 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenMoodAnalyser_WhenImproper_ShouldThrowException() {
-        ExpectedException expectedException = ExpectedException.none();
-        expectedException.expect(MoodAnalyserException.class);
-        MoodAnalyserFactory.createMoodAnalyser("com.bridgelabz.moodanalyzer.service.Mood",
-                "I am in Happy mood");
+    public void givenMoodAnalyser_UsedParameterisedConstructor_WhenImproper_ShouldThrowException() {
+        try{
+            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
+                    "ppy mood","com.moodanalysertesting.MoodAnalysertest");
+        } catch (Exception e) {
+            Assert.assertEquals("Entered Wrong class name",e.getMessage());
+        }
     }
+
 
     @Test
     public void givenMoodAnalyser_WhenProper_ShouldReturnObject() {
