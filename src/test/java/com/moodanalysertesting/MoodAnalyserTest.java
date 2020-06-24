@@ -11,16 +11,19 @@ import java.lang.reflect.InvocationTargetException;
 public class MoodAnalyserTest {
 
     @Test
-    public void givenMoodAnalyserClasee_WhenProper_ShouldReturnObject() {
-        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Happy mood");
-        String mood = null;
-        try {
-            mood = moodAnalyser.analyseMood();
-        } catch (MoodAnalyserException e) {
-            e.printStackTrace();
-        }
-        Assert.assertEquals("HAPPY", mood);
+    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObject() {
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
+                "ppy mood","com.moodanalysertesting.MoodAnalyser");
+        Assert.assertEquals(new MoodAnalyser("I am in a Happy mood"),moodAnalyser );
 
+    }
+
+    @Test
+    public void givenMoodAnalyser_WhenImproper_ShouldThrowException() {
+        ExpectedException expectedException = ExpectedException.none();
+        expectedException.expect(MoodAnalyserException.class);
+        MoodAnalyserFactory.createMoodAnalyser("com.bridgelabz.moodanalyzer.service.Mood",
+                "I am in Happy mood");
     }
 
     @Test

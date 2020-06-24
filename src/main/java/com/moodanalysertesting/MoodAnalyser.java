@@ -1,10 +1,13 @@
 package com.moodanalysertesting;
 
+import java.util.Objects;
+
 public class MoodAnalyser {
 
     private String message;
 
     public MoodAnalyser() {
+
     }
 
     public MoodAnalyser(String message) {
@@ -25,5 +28,18 @@ public class MoodAnalyser {
             throw new MoodAnalyserException(MoodAnalyserException.moodExceptionType.ENTERED_NULL,"Entered" +
                     " NULL message");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MoodAnalyser that = (MoodAnalyser) o;
+        return Objects.equals(message, that.message);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(message);
     }
 }
