@@ -4,9 +4,13 @@ public class MoodAnalyser {
 
     private String message;
 
+    public MoodAnalyser() {
+    }
+
     public MoodAnalyser(String message) {
         this.message = message;
     }
+
 
     public String analyseMood() throws MoodAnalyserException {
         try {
@@ -15,9 +19,8 @@ public class MoodAnalyser {
                         " Empty message");
             if (message.contains("sad"))
                 return "SAD";
-            else {
+            else
                 return "HAPPY";
-            }
         } catch (NullPointerException e) {
             throw new MoodAnalyserException(MoodAnalyserException.moodExceptionType.ENTERED_NULL,"Entered" +
                     " NULL message");

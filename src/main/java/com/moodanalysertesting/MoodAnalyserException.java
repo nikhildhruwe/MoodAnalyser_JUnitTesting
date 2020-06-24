@@ -10,5 +10,4 @@ public class MoodAnalyserException extends Exception{
          ENTERED_EMPTY,ENTERED_NULL
     }
     moodExceptionType type;
-
 }

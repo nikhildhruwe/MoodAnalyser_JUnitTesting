@@ -5,7 +5,53 @@ import org.junit.Test;
 import org.junit.internal.runners.statements.ExpectException;
 import org.junit.rules.ExpectedException;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 public class MoodAnalyserTest {
+
+    @Test
+    public void givenMoodAnalyserClasee_WhenProper_ShouldReturnObject() {
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Happy mood");
+        String mood = null;
+        try {
+            mood = moodAnalyser.analyseMood();
+        } catch (MoodAnalyserException e) {
+            e.printStackTrace();
+        }
+        Assert.assertEquals("HAPPY", mood);
+
+    }
+
+    @Test
+    public void givenMoodAnalyser_WhenProper_ShouldReturnObject() {
+        Constructor<?> constructor = null;
+        try {
+            constructor = Class.forName("com.moodanalysertesting.MoodAnalyser").getConstructor(String.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            Object myObj = constructor.newInstance("I am in a Happy mood.");
+            MoodAnalyser moodAnalyser = (MoodAnalyser) myObj;
+            try {
+                String mood = moodAnalyser.analyseMood();
+                Assert.assertEquals("HAPPY",mood);
+            } catch (MoodAnalyserException e) {
+                e.printStackTrace();
+            }
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     //Test Case for sad message
     @Test
     public void givenMood_WhenSad_ShouldReturnSad() throws MoodAnalyserException {
