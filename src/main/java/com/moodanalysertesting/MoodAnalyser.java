@@ -1,7 +1,5 @@
 package com.moodanalysertesting;
 
-import java.util.Objects;
-
 public class MoodAnalyser {
 
     private String message;
@@ -30,16 +28,5 @@ public class MoodAnalyser {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MoodAnalyser that = (MoodAnalyser) o;
-        return Objects.equals(message, that.message);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(message);
-    }
 }

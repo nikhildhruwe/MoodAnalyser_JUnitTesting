@@ -9,12 +9,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserTest {
-  /*  @Test
-    public void givenMoodAnalyserClass_UsedDefaultConstructor_WhenProper_ShouldReturnObject() {
-
-        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
-                "ppy mood","com.moodanalysertesting.MoodAnalyser");
-    }*/
 
     @Test
     public void givenMoodAnalyserClass_UsedParameterisedConstructor_WhenProper_ShouldReturnObject() {
@@ -25,7 +19,7 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenMoodAnalyser_UsedParameterisedConstructor_WhenImproper_ShouldThrowException() {
+    public void givenMoodAnalyser_UsedParameterisedConstructor_WhenClassNameImproper_ShouldThrowException() {
         try{
             MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
                     "ppy mood","com.moodanalysertesting.MoodAnalysertest");
@@ -34,6 +28,17 @@ public class MoodAnalyserTest {
         }
     }
 
+    @Test
+    public void givenMoodAnalyser_UsedParameterisedConstructor_WhenConstructorNameImproper_ShouldThrowException() {
+        Constructor<?> constructor = null;
+        try {
+            constructor = Class.forName("com.moodanalysertesting.MoodAnalysing").getConstructor(String.class);
+        } catch (NoSuchMethodException e) {
+            Assert.assertEquals("No such Method found", e.getMessage());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void givenMoodAnalyser_WhenProper_ShouldReturnObject() {
