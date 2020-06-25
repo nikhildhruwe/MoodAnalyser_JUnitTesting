@@ -28,7 +28,7 @@ public class MoodAnalyserTest {
         Assert.assertEquals("HAPPY",mood);
     }
 
-  /*  @Test
+  @Test
     public void givenMoodAnalyser_UsedParameterisedConstructor_WhenClassNameImproper_ShouldThrowException() {
         try{
             MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
@@ -37,7 +37,7 @@ public class MoodAnalyserTest {
             Assert.assertEquals("Entered Wrong class name",e.getMessage());
         }
     }
-
+/*
     @Test
     public void givenMoodAnalyser_UsedParameterisedConstructor_WhenConstructorNameImproper_ShouldThrowException() {
         Constructor<?> constructor = null;
