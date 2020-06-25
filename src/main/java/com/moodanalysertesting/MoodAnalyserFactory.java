@@ -4,13 +4,13 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
-    private static String className = "com.moodanalysertesting.MoodAnalyser";
-    private static String constructorName = "com.moodanalysertesting.MoodAnalyser";
-    public static MoodAnalyser createMoodAnalyser(String message,String givenClass) {
+    private static String mame = "com.moodanalysertesting.MoodAnalyser";
+
+    public static MoodAnalyser createMoodAnalyser(String message,String name) {
         try {
             Class<?> moodAnalyserClass;
-            if (className.equals(givenClass)) {
-                moodAnalyserClass = Class.forName(givenClass);
+            if (name.equals(name)) {
+                moodAnalyserClass = Class.forName(name);
             }
              else {
                 throw new MoodAnalyserException(MoodAnalyserException.moodExceptionType.ENTERED_WRONG_CLASS, "Entered" +
@@ -18,11 +18,11 @@ public class MoodAnalyserFactory {
             }
             Constructor moodConstructor = moodAnalyserClass.getConstructor();
             Object moodObject;
-            if (moodConstructor.getName().equals(constructorName)) {
+            if ( message == null || message instanceof String ) {
                 moodConstructor = moodAnalyserClass.getConstructor(String.class);
                 moodObject = moodConstructor.newInstance(message);
             } else {
-                throw new MoodAnalyserException(MoodAnalyserException.moodExceptionType.NO_SUCH_METHOD, "NO_SUCH_METHOD");
+                throw new MoodAnalyserException(MoodAnalyserException.moodExceptionType.NO_SUCH_METHOD, "NO SUCH METHOD");
             }
 
             return (MoodAnalyser) moodObject;
