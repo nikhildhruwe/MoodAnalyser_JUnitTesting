@@ -10,19 +10,29 @@ import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserTest {
 
+/*
     @Test
-    public void givenMoodAnalyserClass_UsedParameterisedConstructor_WhenProper_ShouldReturnObject() {
+    public void givenMoodAnalyserClass_UsedDefaultConstructor_WhenProper_ShouldReturnObject() {
+
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser(null
+                ,"com.moodanalysertesting.MoodAnalyser");
+        Assert.assertEquals(new MoodAnalyser("I am in a Happy mood"), moodAnalyser );
+
+    }*/
+
+    @Test
+    public void givenMoodAnalyserClass_UsedParameterisedConstructor_WhenProper_ShouldReturnObject() throws MoodAnalyserException {
         MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
                 "ppy mood","com.moodanalysertesting.MoodAnalyser");
-        Assert.assertEquals(new MoodAnalyser("I am in a Happy mood"),moodAnalyser );
-
+        String mood = moodAnalyser.analyseMood();
+        Assert.assertEquals("HAPPY",mood);
     }
 
-    @Test
+  /*  @Test
     public void givenMoodAnalyser_UsedParameterisedConstructor_WhenClassNameImproper_ShouldThrowException() {
         try{
             MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
-                    "ppy mood","com.moodanalysertesting.MoodAnalysertest");
+                    "ppy mood","com.moodanalysertesting.MoodAnalysertestin");
         } catch (Exception e) {
             Assert.assertEquals("Entered Wrong class name",e.getMessage());
         }
@@ -32,14 +42,15 @@ public class MoodAnalyserTest {
     public void givenMoodAnalyser_UsedParameterisedConstructor_WhenConstructorNameImproper_ShouldThrowException() {
         Constructor<?> constructor = null;
         try {
-            constructor = Class.forName("com.moodanalysertesting.MoodAnalysing").getConstructor(String.class);
+            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
+                    "ppy mood","com.moodanalysertesting.MoodAnalysertestin");
         } catch (NoSuchMethodException e) {
             Assert.assertEquals("No such Method found", e.getMessage());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-
+*/
     @Test
     public void givenMoodAnalyser_WhenProper_ShouldReturnObject() {
         Constructor<?> constructor = null;
