@@ -2,39 +2,62 @@ package com.moodanalysertesting;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.internal.runners.statements.ExpectException;
-import org.junit.rules.ExpectedException;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class MoodAnalyserTest {
 
-/*
-    @Test
-    public void givenMoodAnalyserClass_UsedDefaultConstructor_WhenProper_ShouldReturnObject() {
-
+  /*  @Test
+    public void givenMoodAnalyserClass_UsedDefaultConstructor_WhenProper_ShouldReturnObject()
+            throws MoodAnalyserException {
         MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser(null
-                ,"com.moodanalysertesting.MoodAnalyser");
-        Assert.assertEquals(new MoodAnalyser("I am in a Happy mood"), moodAnalyser );
-
-    }*/
-
-    @Test
-    public void givenMoodAnalyserClass_UsedParameterisedConstructor_WhenProper_ShouldReturnObject() throws MoodAnalyserException {
-        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
-                "ppy mood","com.moodanalysertesting.MoodAnalyser");
-        String mood = moodAnalyser.analyseMood();
-        Assert.assertEquals("HAPPY",mood);
+                , "com.moodanalysertesting.MoodAnalyser");
+        Assert.assertEquals(true, equals(moodAnalyser));
     }
 
-  @Test
-    public void givenMoodAnalyser_UsedParameterisedConstructor_WhenClassNameImproper_ShouldThrowException() {
-        try{
-            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser("I am in a Ha" +
-                    "ppy mood","com.moodanalysertesting.MoodAnalysera");
+
+    @Test
+    public void givenClassName_WhenImproper_ForDefaultConstructor_ShouldThrowException()
+    throws MoodAnalyserException {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser(null,
+                    "com.moodanalysertesting.MoodAnalysera");
         } catch (Exception e) {
-            Assert.assertEquals("Entered Wrong class name",e.getMessage());
+            Assert.assertEquals("Entered Wrong class name", e.getMessage());
+        }
+    }
+
+   */
+
+    /*@Test
+    public void givenHappyMessage_WhenProper_ShouldReturnHappyMood() {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser
+                    ("I am in a Happy mood","com.moodanalysertesting.MoodAnalyser");
+            Assert.assertEquals("HAPPY",MoodAnalyserReflector.createMoodAnalyser(moodAnalyser));
+        } catch (NoSuchMethodException e) {
+            System.out.println(e.getMessage());
+    }*/
+    //Default constructor
+
+    //Parameterised constructor
+    @Test
+    public void givenMoodAnalyserClass_UsedParameterisedConstructor_WhenProper_ShouldReturnObject() throws
+            MoodAnalyserException{
+        MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser("I am in a happy mood");
+        String mood = moodAnalyser.analyseMood();
+        Assert.assertEquals("HAPPY", mood);
+    }
+
+    @Test
+    public void givenMoodAnalyser_UsedParameterisedConstructor_WhenClassNameImproper_ShouldThrowException() {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser("I am in a Ha" +
+                    "ppy mood");
+        } catch (Exception e) {
+            Assert.assertEquals("Entered Wrong class name", e.getMessage());
         }
     }
 
@@ -67,7 +90,7 @@ public class MoodAnalyserTest {
             MoodAnalyser moodAnalyser = (MoodAnalyser) myObj;
             try {
                 String mood = moodAnalyser.analyseMood();
-                Assert.assertEquals("HAPPY",mood);
+                Assert.assertEquals("HAPPY", mood);
             } catch (MoodAnalyserException e) {
                 e.printStackTrace();
             }
@@ -86,7 +109,7 @@ public class MoodAnalyserTest {
     public void givenMood_WhenSad_ShouldReturnSad() throws MoodAnalyserException {
         MoodAnalyser moodAnalyser = new MoodAnalyser("I am in sad mood.");
         String mood = moodAnalyser.analyseMood();
-        Assert.assertEquals("SAD",mood);
+        Assert.assertEquals("SAD", mood);
     }
 
     //Test Case for any mood
@@ -94,7 +117,7 @@ public class MoodAnalyserTest {
     public void givenMood_WhenAnyMood_ShouldReturnHappy() throws MoodAnalyserException {
         MoodAnalyser moodAnalyser = new MoodAnalyser("I am in any mood.");
         String mood = moodAnalyser.analyseMood();
-        Assert.assertEquals("HAPPY",mood);
+        Assert.assertEquals("HAPPY", mood);
     }
 
     //Test Case for null message
@@ -104,7 +127,7 @@ public class MoodAnalyserTest {
         try {
             moodAnalyser.analyseMood();
         } catch (MoodAnalyserException e) {
-            Assert.assertEquals("Entered NULL message",e.getMessage());
+            Assert.assertEquals("Entered NULL message", e.getMessage());
         }
     }
 
@@ -114,8 +137,8 @@ public class MoodAnalyserTest {
         MoodAnalyser moodAnalyser = new MoodAnalyser("");
         try {
             moodAnalyser.analyseMood();
-        } catch (MoodAnalyserException e){
-            Assert.assertEquals("Entered Empty message",e.getMessage());
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals("Entered Empty message", e.getMessage());
         }
     }
 }

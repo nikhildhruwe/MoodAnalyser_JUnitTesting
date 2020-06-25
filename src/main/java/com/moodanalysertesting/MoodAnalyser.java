@@ -1,5 +1,7 @@
 package com.moodanalysertesting;
 
+import java.util.Objects;
+
 public class MoodAnalyser {
 
     private String message;
@@ -9,6 +11,10 @@ public class MoodAnalyser {
 
     public MoodAnalyser(String message) {
         this.message = message;
+    }
+
+    public String analyseMood(String message){
+        return  analyseMood(message);
     }
 
 
@@ -27,5 +33,11 @@ public class MoodAnalyser {
         }
     }
 
+    public boolean equals(MoodAnalyser another) {
+        if (this.message.equals(another))
+            return true;
+        else
+            return false;
 
+    }
 }
