@@ -73,15 +73,24 @@ public class MoodAnalyserTest {
     //********Reflection with default constructor*******//
 
     @Test
-    public void givenHappyMessage_WithReflection_ShouldReturnHappy() {
+    public void givenHappyMessage_WithReflection_WhenProper_ShouldReturnHappy() {
         try {
            Object myObject= MoodAnalyserReflector.createMoodAnalyser("I am in a Happy mood");
             Object analyseMood = MoodAnalyserReflector.invokeMethod(myObject, "analyseMood");
             Assert.assertEquals("HAPPY",analyseMood);
         } catch (MoodAnalyserException e) {
-            e.printStackTrace();
+            e.getCause().printStackTrace();
         }
+    }
 
+    @Test
+    public void givenHappyMessage_WithReflection_WhenImproper_ShouldReturnHappy() {
+        try {
+            Object myObject= MoodAnalyserReflector.createMoodAnalyser("I am in a Happy mood");
+            Object analyseMood = MoodAnalyserReflector.invokeMethod(myObject, "analyseMood1");
+        } catch (MoodAnalyserException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
