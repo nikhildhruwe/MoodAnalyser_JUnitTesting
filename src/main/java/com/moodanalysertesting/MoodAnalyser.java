@@ -6,7 +6,7 @@ public class MoodAnalyser {
 
     private String message;
 
-    public MoodAnalyser() {
+    public MoodAnalyser(){
     }
 
     public MoodAnalyser(String message) {
@@ -33,11 +33,14 @@ public class MoodAnalyser {
         }
     }
 
-    public boolean equals(MoodAnalyser another) {
-        if (this.message.equals(another))
-            return true;
-        else
-            return false;
+    @Override
+    public boolean equals(Object o) {
+        MoodAnalyser that = (MoodAnalyser) o;
+        return Objects.equals(message, that.message);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(message);
     }
 }

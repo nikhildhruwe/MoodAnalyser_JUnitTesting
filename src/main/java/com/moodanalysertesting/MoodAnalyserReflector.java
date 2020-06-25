@@ -17,12 +17,30 @@ public class MoodAnalyserReflector {
                 object = defaultConstructor.newInstance();
             }
             return (MoodAnalyser) object;
-        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            throw new MoodAnalyserException(MoodAnalyserException.moodExceptionType.NO_SUCH_METHOD, "Entered +" +
+                    "Wrong Method");
         } catch (ClassNotFoundException e) {
-            throw new MoodAnalyserException(MoodAnalyserException.moodExceptionType.NO_SUCH_CLASS,"Entered" +
+            throw new MoodAnalyserException(MoodAnalyserException.moodExceptionType.NO_SUCH_CLASS, "Entered" +
                     " Wrong Class");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
         return null;
+    }
+
+    public static Object invokeMethod(Object moodAnalyserObject, String methodName) throws MoodAnalyserException {
+        try {
+           return moodAnalyserObject.getClass().getMethod(methodName).invoke(moodAnalyserObject);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            throw new MoodAnalyserException(MoodAnalyserException.moodExceptionType.METHOD_INVOKATION_ISSUE,
+                    e.getMessage());
+        } catch (NoSuchMethodException e) {
+            throw new MoodAnalyserException(MoodAnalyserException.moodExceptionType.NO_SUCH_METHOD, "NO SUCH METHOD");
+        }
     }
 }

@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class MoodAnalyserTest {
-    //Default constructor
+    //**********Default constructor*********//
     @Test
     public void givenMoodAnalyserClass_UsedDefaultConstructor_WhenProper_ShouldReturnObject() throws
             MoodAnalyserException {
@@ -35,13 +35,12 @@ public class MoodAnalyserTest {
     public void givenMoodAnalyserConstructor_UsedDefaultConstructor_WhenImproper_ThrowException() {
         try{
             MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser();
-            moodAnalyser.analyseMood();
         }catch (MoodAnalyserException e){
-            e.printStackTrace();
+            Assert.assertEquals("Entered Wrong Method",e.getMessage());
         }
     }
 
-    //Parameterised constructor
+    //********Parameterised constructor*********//
     @Test
     public void givenMoodAnalyserClass_UsedParameterisedConstructor_WhenProper_ShouldReturnObject() throws
             MoodAnalyserException{
@@ -53,8 +52,8 @@ public class MoodAnalyserTest {
     @Test
     public void givenMoodAnalyser_UsedParameterisedConstructor_WhenClassNameImproper_ShouldThrowException() {
         try {
-            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser("I am in a Ha" +
-                    "ppy mood");
+            Class<?> aClass = Class.forName("com.moodanalysertesting.MoodAnalyser");
+            Constructor<?> constructor = aClass.getConstructor();
         } catch (Exception e) {
             Assert.assertEquals("Entered Wrong class name", e.getMessage());
         }
@@ -67,11 +66,22 @@ public class MoodAnalyserTest {
         try {
             aClass = Class.forName("com.moodanalysertesting.MoodAnalyser");
             Constructor<?> constructor = aClass.getConstructor(int.class);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
+        } catch (Exception e) {
+            Assert.assertEquals("Entered Wrong class name", e.getMessage());
+        }
+    }
+    //********Reflection with default constructor*******//
+
+    @Test
+    public void givenHappyMessage_WithReflection_ShouldReturnHappy() {
+        try {
+           Object myObject= MoodAnalyserReflector.createMoodAnalyser("I am in a Happy mood");
+            Object analyseMood = MoodAnalyserReflector.invokeMethod(myObject, "analyseMood");
+            Assert.assertEquals("HAPPY",analyseMood);
+        } catch (MoodAnalyserException e) {
             e.printStackTrace();
         }
+
     }
 
     @Test
