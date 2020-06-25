@@ -117,6 +117,16 @@ public class MoodAnalyserTest {
             System.out.println(e.getMessage());;
         }
     }
+    @Test
+    public void givenMoodAnalyser_WhenFieldValueNull_ShouldThrowException() {
+        try {
+            Object myObject= MoodAnalyserReflector.createMoodAnalyser("");
+            MoodAnalyserReflector.setFieldValue(myObject,"message", null);
+            Object analyseMood = MoodAnalyserReflector.invokeMethod(myObject, "analyseMood");
+        } catch (MoodAnalyserException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     //Test Case for sad message
     @Test
     public void givenMood_WhenSad_ShouldReturnSad() throws MoodAnalyserException {
