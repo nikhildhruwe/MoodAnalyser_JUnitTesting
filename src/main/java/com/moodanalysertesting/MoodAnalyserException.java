@@ -7,7 +7,8 @@ public class MoodAnalyserException extends Exception{
     }
 
     enum moodExceptionType{
-         ENTERED_EMPTY,ENTERED_NULL,NO_SUCH_METHOD,NO_SUCH_CLASS,METHOD_INVOKATION_ISSUE
+         ENTERED_EMPTY,ENTERED_NULL,NO_SUCH_METHOD,NO_SUCH_CLASS,METHOD_INVOKATION_ISSUE,NO_SUCH_FIELD
+        ,FIELD_SETTING_ISSUE
     }
     moodExceptionType type;
 }

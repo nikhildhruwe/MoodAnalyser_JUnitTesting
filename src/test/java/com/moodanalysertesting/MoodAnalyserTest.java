@@ -92,34 +92,19 @@ public class MoodAnalyserTest {
             System.out.println(e.getMessage());
         }
     }
+    //************Reflection to change mood dynamically**************//
+
 
     @Test
-    public void givenMoodAnalyser_WhenProper_ShouldReturnObject() {
-        Constructor<?> constructor = null;
+    public void givenMoodAnalyser_WhenMoodChanges_ShouldReturnHappy() {
         try {
-            constructor = Class.forName("com.moodanalysertesting.MoodAnalyser").getConstructor(String.class);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            Object myObject= MoodAnalyserReflector.createMoodAnalyser("");
+            MoodAnalyserReflector.setFieldValue(myObject,"message", "I am in Happy mood");
+            Object analyseMood = MoodAnalyserReflector.invokeMethod(myObject, "analyseMood");
+            Assert.assertEquals("HAPPY",analyseMood);
+        } catch (MoodAnalyserException e) {
+            e.getCause().printStackTrace();
         }
-        try {
-            Object myObj = constructor.newInstance("I am in a Happy mood.");
-            MoodAnalyser moodAnalyser = (MoodAnalyser) myObj;
-            try {
-                String mood = moodAnalyser.analyseMood();
-                Assert.assertEquals("HAPPY", mood);
-            } catch (MoodAnalyserException e) {
-                e.printStackTrace();
-            }
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
     }
 
     //Test Case for sad message
